@@ -2,7 +2,13 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const expressLayout = require('express-ejs-layouts');
+// DB config
+const DB = require('./config/keys').MongoURI ;
 
+//connect to DB
+mongoose.connect(DB , {useNewUrlParser: true})
+.then(()=> console.log("connected to mongodb ....."))
+.catch(err => console.error("Could not connect")) 
 
 
 
@@ -17,6 +23,10 @@ app.use(express.static(path.join(__dirname , "assets")));
 // ملحوظة لازم نحطها قبل ما نعمل سيت للفيو انجين
 app.use(expressLayout);
 app.set('view engine' , 'ejs');
+
+
+//body parser
+app.use(express.urlencoded({extended:false}))
 
 
 app.use('/',require('./routes/index.route'));
