@@ -14,7 +14,7 @@ USER mohamed
 
 ENV pass=momo
 
-EXPOSE 8000
+EXPOSE 3000
 
 CMD [ "npm","start" ]
 
